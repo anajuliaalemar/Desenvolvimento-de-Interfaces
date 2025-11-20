@@ -1,0 +1,379 @@
+/* =========================================
+   1. VARIÁVEIS E CONFIGURAÇÕES GERAIS
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+  --primary-color: #E72C81;       /* Rosa Neon */
+  --primary-glow: rgba(231, 44, 129, 0.4);
+  --bg-color: #050505;            /* Preto Fundo */
+  --card-bg: rgba(20, 20, 20, 0.7); /* Vidro Escuro */
+  --text-color: #e0e0e0;
+  --border-color: #333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  
+  /* Fundo Tecnológico (Grid + Gradiente) */
+  background-image: 
+    linear-gradient(rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0.9)),
+    linear-gradient(0deg, transparent 24%, rgba(231, 44, 129, 0.03) 25%, rgba(231, 44, 129, 0.03) 26%, transparent 27%, transparent 74%, rgba(231, 44, 129, 0.03) 75%, rgba(231, 44, 129, 0.03) 76%, transparent 77%, transparent),
+    linear-gradient(90deg, transparent 24%, rgba(231, 44, 129, 0.03) 25%, rgba(231, 44, 129, 0.03) 26%, transparent 27%, transparent 74%, rgba(231, 44, 129, 0.03) 75%, rgba(231, 44, 129, 0.03) 76%, transparent 77%, transparent);
+  background-size: 50px 50px;
+  
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* =========================================
+   2. HEADER E MENU GLOBAL (Obrigatório em todas as pgs)
+   ========================================= */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(5, 5, 5, 0.85); /* Transparência */
+  backdrop-filter: blur(10px);     /* Desfoque de vidro */
+  border-bottom: 1px solid rgba(231, 44, 129, 0.3);
+  padding: 1rem 2rem;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Estilo da Logo */
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.logo span {
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* Botão Mobile (Hambúrguer) */
+.mobile-btn {
+  display: none;
+  font-size: 1.8rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Lista do Menu Principal */
+ul.menu {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+ul.menu li {
+  position: relative;
+}
+
+ul.menu a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+/* Efeito Hover Neon nos Links */
+ul.menu a:hover,
+ul.menu a.active {
+  color: var(--primary-color);
+  background: rgba(231, 44, 129, 0.1);
+  box-shadow: 0 0 15px var(--primary-glow);
+}
+
+/* --- SUBMENU (Dropdown) --- */
+ul.submenu {
+  position: absolute;
+  top: 150%;
+  left: 0;
+  background: #0a0a0a;
+  border: 1px solid var(--border-color);
+  border-top: 3px solid var(--primary-color);
+  width: 220px;
+  list-style: none;
+  padding: 0;
+  max-height: 60vh; /* Define a altura máxima como 60% da tela */
+  overflow-y: auto; /* Cria a barra de rolagem se passar dessa altura */
+  /* ========================== */
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  border-radius: 0 0 8px 8px;
+}
+
+/* Personalizando a Barra de Rolagem para ficar Rosa/Tech */
+ul.submenu::-webkit-scrollbar {
+  width: 6px; /* Largura da barra */
+}
+
+ul.submenu::-webkit-scrollbar-track {
+  background: #0a0a0a; /* Fundo da barra (preto) */
+}
+
+ul.submenu::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color); /* Cor da barra (Rosa Neon) */
+  border-radius: 10px; /* Arredondada */
+  border: 1px solid #0a0a0a;
+}
+
+/* Animação para aparecer */
+ul.menu li:hover ul.submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Links do submenu */
+ul.submenu li a {
+  display: block;
+  padding: 12px 20px;
+  border-bottom: 1px solid #1a1a1a;
+  color: #ccc; 
+  font-size: 0.9rem; /* Diminuí um pouco a fonte para caber mais */
+}
+
+ul.submenu li a:hover {
+  background: #1a1a1a;
+  padding-left: 25px; 
+  color: var(--primary-color);
+}
+/* =========================================
+   3. ESTRUTURA PRINCIPAL E CONTEÚDO
+   ========================================= */
+main {
+  margin-top: 100px; /* Compensa o header fixo */
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Estilo Padrão de Card (Usado na Intro e outras seções) */
+.intro, .card, section {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 3rem;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  position: relative;
+  overflow: hidden; /* Para a linha decorativa não vazar */
+  margin-bottom: 2rem;
+}
+
+/* Linha Neon no topo dos cards */
+.intro::before, .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+}
+
+/* Títulos e Textos */
+h1, h2 {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+}
+
+h2 span {
+  color: var(--primary-color);
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #aaa;
+  margin-bottom: 1.5rem;
+}
+
+strong, b {
+  color: #fff;
+}
+
+/* =========================================
+   4. ELEMENTOS VISUAIS (Botões e Imagens)
+   ========================================= */
+
+/* Botão Tech (Borda Neon) */
+.btn-tech {
+  display: inline-block;
+  padding: 12px 30px;
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+  margin: 20px 0;
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.btn-tech:hover {
+  background: var(--primary-color);
+  color: #fff;
+  box-shadow: 0 0 25px var(--primary-glow);
+  transform: scale(1.05);
+}
+
+/* Imagem Flutuante com Borda Neon */
+.kirby-img, .foto-perfil {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--primary-color);
+  margin-top: 30px;
+  box-shadow: 0 0 30px var(--primary-glow), inset 0 0 20px var(--primary-glow);
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+/* =========================================
+   5. FOOTER
+   ========================================= */
+footer {
+  background: #000;
+  border-top: 1px solid #222;
+  padding: 2rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+.social-links {
+  margin-top: 15px;
+}
+
+.social-links a {
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 0 15px;
+  transition: 0.3s;
+}
+
+.social-links a:hover {
+  color: var(--primary-color);
+  text-shadow: 0 0 15px var(--primary-color);
+  transform: translateY(-3px);
+}
+
+/* =========================================
+   6. RESPONSIVIDADE (CELULAR)
+   ========================================= */
+@media (max-width: 768px) {
+  .mobile-btn {
+    display: block; /* Mostra o botão hamburguer */
+  }
+
+  ul.menu {
+    position: fixed;
+    top: 70px;
+    right: -100%; /* Esconde menu lateralmente */
+    width: 100%;
+    height: calc(100vh - 70px);
+    background: #0a0a0a;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 50px;
+    transition: 0.4s ease;
+    border-top: 1px solid var(--primary-color);
+  }
+
+  ul.menu.active {
+    right: 0; /* Mostra menu */
+  }
+
+  /* Ajustes do Submenu no Celular */
+  ul.submenu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    width: 100%;
+    text-align: center;
+    transform: none;
+    display: none; 
+  }
+  
+  ul.menu li:hover ul.submenu {
+    display: block;
+  }
+
+  .intro, .card {
+    padding: 1.5rem;
+  }
+
+  .kirby-img, .foto-perfil {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+
+/* ====== CLASSE PARA CENTRALIZAR CARD ====== */
+.card-centralizado {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  display: block;
+  max-width: 900px; /* Ajuste o tamanho máximo se quiser mais largo ou estreito */
+  width: 90%; /* Garante que não encoste nas bordas no celular */
+}
+
+
+/* ====== CLASSE PARA CENTRALIZAR TUDO (Vertical + Horizontal) ====== */
+/* Use esta classe na tag <main> quando quiser centralizar o conteúdo */
+.centraliza-tudo {
+  display: flex;
+  justify-content: center; /* Alinha Horizontalmente (Esquerda/Direita) */
+  align-items: center;     /* Alinha Verticalmente (Topo/Baixo) */
+  min-height: calc(100vh - 180px); /* Altura da tela menos cabeçalho e rodapé */
+}

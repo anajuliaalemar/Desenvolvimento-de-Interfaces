@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Biblioteca de Livros</title>
+      
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+    /* --- Configurações Gerais --- */
+    body {
+        font-family: 'Poppins', sans-serif; 
+        background-color: #0f0f10;
+        color: #e0e0e0;
+        overflow: hidden;
+        height: 100vh;
+    }
+
+    /* --- Tipografia --- */
+    h3.library-title {
+        font-family: 'Playfair Display', serif;
+        color: #ffc107;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 2px 10px rgba(255, 193, 7, 0.2);
+    }
+
+    h4 {
+        font-family: 'Playfair Display', serif;
+        color: #fff;
+        font-size: 1.8rem;
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    h4::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, #0d6efd, transparent);
+        margin-left: 15px;
+    }
+
+    p {
+        color: #b0b3b8;
+        line-height: 1.8;
+        font-size: 0.95rem;
+        text-align: justify;
+        background: rgba(255,255,255,0.03);
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 3px solid #333;
+    }
+
+    /* --- ESTILO DOS TÍTULOS DOS LIVROS (P1) --- */
+    p1 {
+        display: flex; /* Flex para centralizar vertical e horizontalmente */
+        align-items: center;
+        justify-content: center;
+        
+        background-color: rgba(13, 110, 253, 0.15);
+        color: #4da3ff;
+        font-size: 1rem; 
+        font-weight: 600;
+        
+        /* Espaçamento */
+        width: fit-content;
+        margin: 0 auto 20px auto; /* Margem automática nas laterais (centraliza) e 20px abaixo */
+        padding: 10px 20px;
+        
+        border-radius: 50px; /* Bordas bem redondas */
+        border: 1px solid rgba(13, 110, 253, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        
+        /* Altura mínima para evitar que o carrossel pule se o título tiver 2 linhas */
+        min-height: 50px; 
+        text-align: center;
+        line-height: 1.2;
+    }
+
+    /* --- Layout Geral --- */
+    .container-fluid, .row {
+        height: 100vh;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* --- Menu Lateral (Sidebar) --- */
+    .sidebar-col {
+        background-color: #161618;
+        border-right: 1px solid #2c2c2c;
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+        height: 100%;
+        z-index: 10;
+    }
+
+    .nav-pills .nav-link {
+        color: #a0a0a0;
+        font-size: 1rem;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        padding: 15px 20px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border: 1px solid transparent;
+    }
+
+    .nav-pills .nav-link i {
+        width: 20px;
+        text-align: center;
+        font-size: 1.1rem;
+    }
+
+    .nav-pills .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: #fff;
+        transform: translateX(5px);
+    }
+
+    .nav-pills .nav-link.active {
+        background: linear-gradient(135deg, #0d6efd 0%, #0043a8 100%);
+        color: #fff;
+        box-shadow: 0 4px 20px rgba(13, 110, 253, 0.3);
+        font-weight: 600;
+    }
+
+    /* --- Área de Conteúdo --- */
+    .content-col {
+        height: 100%;
+        padding: 0;
+        background-image: radial-gradient(circle at top right, rgba(13, 110, 253, 0.05), transparent 40%);
+    }
+
+    .scrollspy-example-2 {
+        height: 100%;
+        overflow-y: auto;
+        padding: 40px 60px 100px 60px;
+        scroll-behavior: smooth;
+    }
+
+    /* --- Hero Section --- */
+    .library-hero {
+        text-align: center;
+        padding: 40px 20px;
+        border-bottom: 1px solid #2c2c2c;
+        margin-bottom: 20px;
+    }
+    
+    .library-hero h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        color: #fff;
+    }
+
+    .library-hero span {
+        color: #0d6efd;
+        font-style: italic;
+    }
+
+    /* --- Carrossel e Livros --- */
+    .carousel {
+        margin: 40px 0;
+        background: rgba(0,0,0,0.2);
+        border-radius: 20px;
+        padding: 30px 0; /* Aumentei o padding para caber o título confortavelmente */
+        border: 1px solid #2c2c2c;
+    }
+
+    .carousel-item {
+        /* Garante que tudo dentro do item (titulo e imagem) fique centralizado */
+        text-align: center; 
+        transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .carousel-item button {
+        background: transparent;
+        border: none;
+        padding: 0; /* Removi padding do botão para alinhar melhor */
+        transition: all 0.3s;
+    }
+
+    .carousel-item img {
+        height: 350px;
+        border-radius: 8px;
+        box-shadow: -5px 5px 10px rgba(0,0,0,0.5); 
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        object-fit: cover;
+        margin-top: 10px; /* Espaço extra entre o título e a imagem */
+    }
+
+    /* Hover Effect */
+    .carousel-item button:hover img {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        cursor: pointer;
+    }
+
+    /* Setas */
+    .carousel-control-prev, .carousel-control-next {
+        width: 50px;
+        opacity: 0.7;
+    }
+    
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: rgba(13, 110, 253, 0.8);
+        border-radius: 50%;
+        background-size: 50%;
+        padding: 15px;
+        box-shadow: 0 0 10px rgba(13, 110, 253, 0.5);
+    }
+    
+    .carousel-indicators {
+        bottom: -10px; /* Joga os indicadores um pouco mais para baixo */
+    }
+
+    .carousel-indicators [data-bs-target] {
+        background-color: #0d6efd;
+        height: 4px;
+        border-radius: 2px;
+    }
+
+    /* --- Footer --- */
+    .library-footer {
+        margin-top: 80px;
+        padding-top: 40px;
+        border-top: 1px solid #2c2c2c;
+        text-align: center;
+        color: #666;
+        font-size: 0.85rem;
+    }
+    
+    .library-footer i {
+        color: #0d6efd;
+        margin: 0 10px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+    .library-footer i:hover { color: #fff; }
+
+    /* --- Scrollbar --- */
+    .scrollspy-example-2::-webkit-scrollbar { width: 8px; }
+    .scrollspy-example-2::-webkit-scrollbar-track { background: #0f0f10; }
+    .scrollspy-example-2::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+
+    /* --- Responsividade --- */
+    @media (max-width: 768px) {
+        body { overflow: auto; height: auto; }
+        .container-fluid, .row { height: auto; }
+        
+        .sidebar-col {
+            width: 100%;
+            height: auto;
+            position: sticky;
+            top: 0;
+            border-right: none;
+            border-bottom: 1px solid #333;
+            padding: 15px;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .nav-pills {
+            flex-direction: row !important;
+            overflow-x: auto;
+            gap: 10px;
+        }
+        
+        .nav-pills .nav-link span { display: none; }
+        
+        .scrollspy-example-2 { padding: 20px; height: auto; overflow: visible; }
+        .carousel-item img { height: 260px; }
+    }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            
+            <div class="col-md-3 col-lg-3 sidebar-col">
+                <h3 class="library-title"><i class="fas fa-book-open me-2"></i> Biblioteca</h3>
+                
+                <nav id="navbar-example3" class="h-100 flex-column align-items-stretch">
+                    <nav class="nav nav-pills flex-column mt-4">
+                        <a class="nav-link" href="#item-1"><i class="fas fa-child"></i> <span>Infantis</span></a>
+                        <a class="nav-link" href="#item-2"><i class="fas fa-graduation-cap"></i> <span>Didáticos</span></a>
+                        <a class="nav-link" href="#item-3"><i class="fas fa-place-of-worship"></i> <span>Religiosos</span></a> 
+                        <a class="nav-link" href="#item-4"><i class="fas fa-utensils"></i> <span>Receitas</span></a>
+                        <a class="nav-link" href="#item-5"><i class="fas fa-heart"></i> <span>Romance</span></a>
+                    </nav>
+                    
+                    <div style="margin-top: auto; color: #555; font-size: 0.8rem; padding-top: 20px;">
+                        <p style="background:none; border:none; padding:0;">Clique nas capas para ler os livros em PDF.</p>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="col-md-9 col-lg-9 content-col">
+                
+                <div data-bs-spy="scroll" data-bs-target="#navbar-example3" data-bs-smooth-scroll="true" class="scrollspy-example-2" tabindex="0">
+                    
+                    <div class="library-hero">
+                        <h1>Acervo <span>Digital</span></h1>
+                        <p style="text-align: center; border:none; background:none;">Explore conhecimento, fantasia e cultura.</p>
+                    </div>
+
+                    <div id="item-1">
+                        <h4><i class="fas fa-shapes" style="color: #ff6b6b;"></i> Livros Infantis</h4>
+                        <p>Os livros infantis são mágicas portas para o mundo da imaginação. Com histórias envolventes e personagens coloridos, eles despertam a curiosidade.</p>
+                        
+                        <div id="carouselInfantis" class="carousel slide">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselInfantis" data-bs-slide-to="0" class="active"></button>
+                                <button type="button" data-bs-target="#carouselInfantis" data-bs-slide-to="1"></button>
+                                <button type="button" data-bs-target="#carouselInfantis" data-bs-slide-to="2"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <p1>O Sol que Ensina a Brilhar</p1><br>
+                                    <button onclick="window.open('https://archivepublicdomain.com/files/2025/11/O-sol-que-ensinava-a-brilhar.pdf', '_blank')">
+                                        <img src="https://www.baixelivros.com.br/media/2025/11/o-sol-que-ensinava-a-brilhar.jpg" alt="Livro 1" />
+                                    </button>
+                                </div>
+                                <div class="carousel-item">
+                                    <p1>O Ursinho Urselino</p1><br>
+                                    <button onclick="window.open('https://5ca0e999-de9a-47e0-9b77-7e3eeab0592c.usrfiles.com/ugd/5ca0e9_1cc8fd18120e4c7f85eafc1c65381b78.pdf', '_blank')">
+                                        <img src="https://www.baixelivros.com.br/media/2020/05/ursinho-urselino.jpg" alt="Livro 2" />
+                                    </button>
+                                </div>
+                                <div class="carousel-item">
+                                    <p1>As Aventuras do Jovem Pigmeu</p1><br>
+                                    <button onclick="window.open('https://5ca0e999-de9a-47e0-9b77-7e3eeab0592c.usrfiles.com/ugd/5ca0e9_f17489977d524bdf9a3e2beb1362836c.pdf', '_blank')">
+                                        <img src="https://www.baixelivros.com.br/media/2020/05/jovem-pigmeu-290x315.jpg" alt="Livro 3">
+                                    </button>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselInfantis" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon"></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselInfantis" data-bs-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </button>
+                        </div>
+                    </div>
+                
+                    <div id="item-2">
+                        <h4><i class="fas fa-book" style="color: #4ecdc4;"></i> Livros Didáticos</h4>
+                        <p>Ferramentas educacionais essenciais que servem a vários propósitos centrais no processo de ensino-aprendizagem.</p>
+                    </div>
+
+                    <div id="carouselDidaticos" class="carousel slide">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselDidaticos" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#carouselDidaticos" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#carouselDidaticos" data-bs-slide-to="2"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <p1>Aprendendo sobre o Verão</p1><br>
+                                <button onclick="window.open('https://archivepublicdomain.com/files/2025/11/aprendendo_sobre_o_verao.pdf', '_blank')">
+                                    <img src="https://www.baixelivros.com.br/media/2025/11/aprendendo-sobre-o-verao-290x315.jpg" alt="Livro 1" />
+                                </button>
+                            </div>
+                            <div class="carousel-item">
+                                <p1>Caligrafia Divertida</p1><br>
+                                <button onclick="window.open('https://archivepublicdomain.com/files/2025/03/caligrafia-divertida.pdf', '_blank')">
+                                    <img src="https://www.baixelivros.com.br/media/2025/03/caligrafia-divertida-290x315.jpg" alt="Livro 2" />
+                                </button>
+                            </div>
+                            <div class="carousel-item">
+                                <p1>Consciência Silábica</p1><br>
+                                <button onclick="window.open('https://archivepublicdomain.com/files/2025/10/consciencia-silabica.pdf', '_blank')">
+                                    <img src="https://www.baixelivros.com.br/media/2025/10/consciencia-silabica-290x315.jpg" alt="Livro 3">
+                                </button>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselDidaticos" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselDidaticos" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+
+                    <div id="item-3">
+                        <h4><i class="fas fa-pray" style="color: #ffe66d;"></i> Livros Religiosos</h4>
+                        <p>Guias sagrados que contêm as leis, as histórias, as profecias e os ensinamentos morais fundamentais para a fé.</p>
+                    </div>
+
+                    <div id="carouselReligiosos" class="carousel slide">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselReligiosos" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#carouselReligiosos" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#carouselReligiosos" data-bs-slide-to="2"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <p1>Itinerário São Miguel 2025</p1><br>
+                                <button onclick="window.open('https://archivepublicdomain.com/files/2025/08/ebook-itinerario-de-sao-miguel-2025.pdf', '_blank')">
+                                    <img src="https://www.baixelivros.com.br/media/2025/08/itinerario-sao-miguel-290x315.jpg" alt="Livro 1" />
+                                </button>
+                            </div>
+                            <div class="carousel-item">
+                                <p1>Tratado de Oração</p1><br>
+                                <button onclick="window.open('https://archivepublicdomain.com/files/2025/03/tratado-de-oracao-e-meditacao-breve-recompilacao.pdf', '_blank')">
+                                    <img src="https://www.baixelivros.com.br/media/2025/03/tratado-de-oracao-e-meditacao-290x315.jpg" alt="Livro 2" />
+                                </button>
+                            </div>
+                            <div class="carousel-item">
+                                <p1>Via-Sacra 2025</p1><br>
+                                <button onclick="window.open('https://editoradomusaurea.com.br/via-sacra/?.pdf', '_blank')">
+                                    <img src="https://www.baixelivros.com.br/media/2021/02/via-sacra-2-290x315.jpg" alt="Livro 3" />
+                                </button>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselReligiosos" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselReligiosos" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+
+                    <div id="item-4">
+                        <h4><i class="fas fa-lemon" style="color: #95d5b2;"></i> Livros de Receita</h4>
+                        <p>Tesouros de técnicas e sabores. Guias práticos que permitem dominar novos pratos e preservar a culinária familiar.</p>
+                    </div>
+
+                    <div id="carouselReceitas" class="carousel slide">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselReceitas" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#carouselReceitas" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#carouselReceitas" data-bs-slide-to="2"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <p1>Doces Típicos - Festas Juninas</p1><br>
+                                <button onclick="window.open('https://archivepublicdomain.com/files/2025/06/doces-festas-juninas.pdf', '_blank')">
+                                    <img src="https://www.baixelivros.com.br/media/2025/06/doces-tipicos-das-festas-juninas-290x315.jpg" alt="Livro 1" />
+                                </button>
+                            </div>
+                            <div class="carousel-item">
+                                <p1>Receitas Culinárias de Família</p1><br>
+                                <button onclick="window.open('https://domainpublic.wordpress.com/wp-content/uploads/2022/07/historia-cultura-e-gostosura-compactado.pdf', '_blank')">
+                                    <img src="https://www.baixelivros.com.br/media/2022/07/culinaria-familar-290x315.jpg" alt="Livro 2" />
+                                </button>
+                            </div>
+                            <div class="carousel-item">
+                                <p1>Os Melhores Bolos</p1><br>
+                                <button onclick="window.open('https://domainpublic.wordpress.com/wp-content/uploads/2022/06/os-100-melhores-bolos.pdf', '_blank')">
+                                    <img src="https://www.baixelivros.com.br/media/2022/06/os-cem-melhores-bolos-290x315.jpg" alt="Livro 3" />
+                                </button>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselReceitas" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselReceitas" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+
+                    <div id="item-5">
+                        <h4><i class="fas fa-heart" style="color: #ff8fab;"></i> Livros de Romance</h4>
+                        <p>O refúgio para quem busca a complexidade da conexão humana. Tramas emocionantes sobre relacionamentos e amor.</p>
+                    </div>
+
+                    <div id="carouselRomance" class="carousel slide">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselRomance" data-bs-slide-to="0" class="active"></button>
+                            <button type="button" data-bs-target="#carouselRomance" data-bs-slide-to="1"></button>
+                            <button type="button" data-bs-target="#carouselRomance" data-bs-slide-to="2"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <p1>As Palavras de Gwangju</p1><br>
+                                <button onclick="window.open('https://archivepublicdomain.com/files/2025/08/as_palavras_de_gwangju.pdf', '_blank')">
+                                    <img src="https://www.baixelivros.com.br/media/2025/08/as-palavras-de-gwangju-290x315.jpg" alt="Livro 1" />
+                                </button>
+                            </div>
+                            <div class="carousel-item">
+                                <p1>Já Disse que te Amo?</p1><br>
+                                <button onclick="window.open('https://www.editoraarqueiro.com.br/media/upload/livros/jadissequeteamo_trecho_1.pdf', '_blank')">
+                                    <img src="https://www.baixelivros.com.br/media/2019/04/ja-disse-que-te-amo.jpg" alt="Livro 2" />
+                                </button>
+                            </div>
+                            <div class="carousel-item">
+                                <p1>Um Casamento Americano</p1><br>
+                                <button onclick="window.open('https://www.editoraarqueiro.com.br/media/upload/livros/UmCasamentoAmericano_Trecho_1.pdf', '_blank')">
+                                    <img src="https://www.baixelivros.com.br/media/2019/03/um-casamento-americano.jpg" alt="Livro 3" />
+                                </button>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselRomance" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselRomance" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
+                    
+                    <footer class="library-footer">
+                        <p>&copy; 2025 Biblioteca Digital. Todos os direitos reservados.</p>
+                        <div class="mt-2">
+                            <i class="fab fa-instagram"></i>
+                            <i class="fab fa-facebook"></i>
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                    </footer>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

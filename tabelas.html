@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aula 6 - Tabelas</title>
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">Ana<span>.Tech</span></div>
+      
+      <div class="mobile-btn" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+
+      <ul class="menu" id="nav-menu">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="qmsou.html">Quem sou eu?</a></li>
+        <li>
+          <a href="#">Aulas <i class="fas fa-chevron-down" style="font-size: 0.7em; margin-left: 5px;"></i></a>
+          <ul class="submenu">
+            <li><a href="resumo.html">Resumo do curso</a></li>
+            <li><a href="tabelas.html">Tabelas</a></li>
+            <li><a href="listas.html">Listas</a></li>
+            <li><a href="formularios.html">Formulários</a></li>
+            <li><a href="menus.html">Menus</a></li>
+            <li><a href="petshop.html">PetShop</a></li>
+            <li><a href="cards.html">Cards</a></li>
+            <li><a href="login.html">Login Saúde</a></li>
+            <li><a href="gametech.html">Gametech</a></li>
+            <li><a href="tabela-periodica.html">Tabela Periódica</a></li>
+            <li><a href="fotografo.html">Fotógrafo</a></li>
+            <li><a href="brasiliaresort.html">Brasília Resort</a></li>
+            <li><a href="biografia.html">Biografia César Lattes</a></li>
+            <li><a href="biblioteca.html">Biblioteca</a></li>
+          </ul>
+        </li>
+        <li><a href="contatos.html">Contatos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="centraliza-tudo">
+    
+    <section class="card card-centralizado">
+      <h2>Tabelas: Brasileirão Série A</h2>
+      <p>
+        Abaixo você visualiza a tabela de classificação do Brasileirão, desenvolvida com HTML e CSS. 
+        As tabelas são fundamentais para organizar dados complexos de forma comparativa e clara.
+      </p>
+
+      <div style="border: 2px solid #E72C81; border-radius: 12px; overflow: hidden; box-shadow: 0 0 15px rgba(231, 44, 129, 0.3); margin-bottom: 20px;">
+        
+        <p class="codepen" data-height="500" data-default-tab="result" data-slug-hash="raOryKw" data-pen-title="Lista Brasileirão" data-user="Ana-Julia-Alemar-de-Souza" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+          <span>See the Pen <a href="https://codepen.io/Ana-Julia-Alemar-de-Souza/pen/raOryKw">
+          Lista Brasileirão</a> by Ana Julia Alemar de Souza (<a href="https://codepen.io/Ana-Julia-Alemar-de-Souza">@Ana-Julia-Alemar-de-Souza</a>)
+          on <a href="https://codepen.io">CodePen</a>.</span>
+        </p>
+        <script async src="https://public.codepenassets.com/embed/index.js"></script>
+      
+      </div>
+
+      <a href="https://codepen.io/Ana-Julia-Alemar-de-Souza/pen/raOryKw" target="_blank" class="btn-tech">
+        <i class="fab fa-codepen"></i> Ver código completo
+      </a>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-content">
+        <p>&copy; 2025 Ana Júlia Alemar. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('nav-menu');
+      const icon = document.querySelector('.mobile-btn i');
+      
+      menu.classList.toggle('active');
+      
+      if (menu.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aula 6 - Menus</title>
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    /* --- ESTILOS DO MENU COM LISTA (UL) --- */
+    ul.menu-lista {
+      list-style-type: none; 
+      padding: 0; 
+      background-color: #E72C81; /* Rosa do Tema */
+      width: fit-content; 
+      margin: 20px auto; /* Margem ajustada para separar dos textos */
+      display: flex; 
+      border-radius: 8px; /* Arredondado leve */
+    }
+    
+    ul.menu-lista li a {
+      display: block;
+      color: rgb(255, 255, 255);
+      text-align: center; 
+      padding: 14px 0; 
+      text-decoration: none;
+      transition: background-color 0.3s;
+      width: 120px; /* Tamanho ajustado para caber melhor */
+      font-size: 0.9rem;
+    }
+    
+    ul.menu-lista li a:hover {
+      background-color: #c21866; 
+    }
+
+    /* --- ESTILOS DO MENU COM TABELA --- */
+    table.menu-tabela {
+      background-color: #E72C81;
+      border-collapse: collapse; 
+      margin: 20px auto; 
+      border-radius: 8px;
+      overflow: hidden; /* Para a borda arredondada funcionar na tabela */
+    }
+
+    table.menu-tabela td {
+      padding: 0; 
+    }
+
+    table.menu-tabela td a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 14px 0; 
+      text-align: center;
+      transition: background-color 0.3s;
+      width: 120px; 
+      font-size: 0.9rem;
+    }
+
+    table.menu-tabela td a:hover {
+      background-color: #c21866;
+    }
+
+    /* Títulos das seções de exemplo */
+    h3 {
+        text-align: center;
+        color: #fff;
+        margin-top: 30px;
+        border-bottom: 1px solid #333;
+        padding-bottom: 10px;
+    }
+  </style>
+
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">Ana<span>.Tech</span></div>
+      
+      <div class="mobile-btn" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+
+      <ul class="menu" id="nav-menu">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="qmsou.html">Quem sou eu?</a></li>
+        <li>
+          <a href="#">Aulas <i class="fas fa-chevron-down" style="font-size: 0.7em; margin-left: 5px;"></i></a>
+          <ul class="submenu">
+            <li><a href="resumo.html">Resumo do curso</a></li>
+            <li><a href="tabelas.html">Tabelas</a></li>
+            <li><a href="listas.html">Listas</a></li>
+            <li><a href="formularios.html">Formulários</a></li>
+            <li><a href="menus.html">Menus</a></li>
+            <li><a href="petshop.html">PetShop</a></li>
+            <li><a href="cards.html">Cards</a></li>
+            <li><a href="login.html">Login Saúde</a></li>
+            <li><a href="gametech.html">Gametech</a></li>
+            <li><a href="tabela-periodica.html">Tabela Periódica</a></li>
+            <li><a href="fotografo.html">Fotógrafo</a></li>
+            <li><a href="brasiliaresort.html">Brasília Resort</a></li>
+            <li><a href="biografia.html">Biografia César Lattes</a></li>
+            <li><a href="biblioteca.html">Biblioteca</a></li>
+          </ul>
+        </li>
+        <li><a href="contatos.html">Contatos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="centraliza-tudo">
+    
+    <section class="card card-centralizado">
+      <h2>Exemplos de Menus</h2>
+      <p>
+        Nesta aula, aprendemos duas formas clássicas de criar menus de navegação horizontais: 
+        utilizando <b>Listas (ul/li)</b> e utilizando <b>Tabelas</b>. 
+      </p>
+      <p>
+        Atualmente, o uso de Listas com CSS (Flexbox) é o padrão mais recomendado e semântico.
+      </p>
+
+      <h3>1. Menu feito com Lista (Recomendado)</h3>
+      <ul class="menu-lista">
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Pacotes</a></li>
+        <li><a href="#">Cachorros</a></li>
+        <li><a href="#">Gatos</a></li>
+        <li><a href="#">Contatos</a></li>
+      </ul>
+
+      <h3>2. Menu feito com Tabela</h3>
+      <table class="menu-tabela">
+        <tr>
+          <td><a href="#">Início</a></td>
+          <td><a href="#">Pacotes</a></td>
+          <td><a href="#">Cachorros</a></td>
+          <td><a href="#">Gatos</a></td>
+          <td><a href="#">Contatos</a></td>
+        </tr>
+      </table>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-content">
+        <p>&copy; 2025 Ana Júlia Alemar. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('nav-menu');
+      const icon = document.querySelector('.mobile-btn i');
+      
+      menu.classList.toggle('active');
+      
+      if (menu.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    }
+  </script>
+
+</body>
+</html>

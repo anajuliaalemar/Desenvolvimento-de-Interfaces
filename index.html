@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio | Ana Júlia Alemar</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    /* ====== VARIÁVEIS E RESET ====== */
+    :root {
+      --primary-color: #E72C81; /* Rosa Neon */
+      --primary-glow: rgba(231, 44, 129, 0.4);
+      --bg-color: #050505; /* Preto Profundo */
+      --card-bg: rgba(20, 20, 20, 0.7); /* Vidro Escuro */
+      --text-color: #e0e0e0;
+      --border-color: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      /* Fundo tecnológico com Grid sutil */
+      background-image: 
+        linear-gradient(rgba(20, 20, 20, 0.9), rgba(20, 20, 20, 0.9)),
+        linear-gradient(0deg, transparent 24%, rgba(231, 44, 129, 0.05) 25%, rgba(231, 44, 129, 0.05) 26%, transparent 27%, transparent 74%, rgba(231, 44, 129, 0.05) 75%, rgba(231, 44, 129, 0.05) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(231, 44, 129, 0.05) 25%, rgba(231, 44, 129, 0.05) 26%, transparent 27%, transparent 74%, rgba(231, 44, 129, 0.05) 75%, rgba(231, 44, 129, 0.05) 76%, transparent 77%, transparent);
+      background-size: 50px 50px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ====== HEADER TECH ====== */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(5, 5, 5, 0.85);
+      backdrop-filter: blur(10px); /* Efeito de vidro fosco */
+      border-bottom: 1px solid rgba(231, 44, 129, 0.3);
+      padding: 1rem 2rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .logo span {
+      color: var(--primary-color);
+      text-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    /* ====== MENU DESKTOP ====== */
+    ul.menu {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    ul.menu li {
+      position: relative;
+    }
+
+    ul.menu a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    /* Efeito Hover Neon */
+    ul.menu a:hover {
+      color: var(--primary-color);
+      background: rgba(231, 44, 129, 0.1);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    /* --- SUBMENU (Dropdown) --- */
+ul.submenu {
+  position: absolute;
+  top: 150%;
+  left: 0;
+  background: #0a0a0a;
+  border: 1px solid var(--border-color);
+  border-top: 3px solid var(--primary-color);
+  width: 220px;
+  list-style: none;
+  padding: 0;
+  
+  /* === O SEGREDO ESTÁ AQUI === */
+  max-height: 60vh; /* Define a altura máxima como 60% da tela */
+  overflow-y: auto; /* Cria a barra de rolagem se passar dessa altura */
+  /* ========================== */
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  border-radius: 0 0 8px 8px;
+}
+
+/* Personalizando a Barra de Rolagem para ficar Rosa/Tech */
+ul.submenu::-webkit-scrollbar {
+  width: 6px; /* Largura da barra */
+}
+
+ul.submenu::-webkit-scrollbar-track {
+  background: #0a0a0a; /* Fundo da barra (preto) */
+}
+
+ul.submenu::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color); /* Cor da barra (Rosa Neon) */
+  border-radius: 10px; /* Arredondada */
+  border: 1px solid #0a0a0a;
+}
+
+/* Animação para aparecer */
+ul.menu li:hover ul.submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Links do submenu */
+ul.submenu li a {
+  display: block;
+  padding: 12px 20px;
+  border-bottom: 1px solid #1a1a1a;
+  color: #ccc; 
+  font-size: 0.9rem; /* Diminuí um pouco a fonte para caber mais */
+}
+
+ul.submenu li a:hover {
+  background: #1a1a1a;
+  padding-left: 25px; 
+  color: var(--primary-color);
+}
+    /* Botão Mobile (Hambúrguer) */
+    .mobile-btn {
+      display: none;
+      font-size: 1.8rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* ====== MAIN CONTENT ====== */
+    main {
+      margin-top: 100px; /* Espaço para o header fixo */
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .intro {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 3rem;
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Detalhe decorativo no card */
+    .intro::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    }
+
+    .intro h2 {
+      font-size: 2.5rem;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .intro h2 span {
+      color: var(--primary-color);
+    }
+
+    .intro p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #aaa;
+      margin-bottom: 1.5rem;
+    }
+
+    .intro strong, .intro b, .intro i {
+      color: #fff;
+    }
+
+    /* Botão de Currículo Tech */
+    .btn-tech {
+      display: inline-block;
+      padding: 12px 30px;
+      background: transparent;
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+      margin: 20px 0;
+      box-shadow: 0 0 10px var(--primary-glow);
+    }
+
+    .btn-tech:hover {
+      background: var(--primary-color);
+      color: #fff;
+      box-shadow: 0 0 25px var(--primary-glow);
+      transform: scale(1.05);
+    }
+
+    /* Imagem Kirby Flutuante */
+    .kirby-img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--primary-color);
+      margin-top: 30px;
+      box-shadow: 0 0 30px var(--primary-glow), inset 0 0 20px var(--primary-glow);
+      animation: float 4s ease-in-out infinite; /* Animação */
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* ====== FOOTER ====== */
+    footer {
+      background: #000;
+      border-top: 1px solid #222;
+      padding: 2rem;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .social-links {
+      margin-top: 15px;
+    }
+
+    .social-links a {
+      color: #fff;
+      font-size: 1.5rem;
+      margin: 0 15px;
+      transition: 0.3s;
+    }
+
+    .social-links a:hover {
+      color: var(--primary-color);
+      text-shadow: 0 0 15px var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    /* ====== RESPONSIVIDADE (CELULAR) ====== */
+    @media (max-width: 768px) {
+      .mobile-btn {
+        display: block;
+      }
+
+      ul.menu {
+        position: fixed;
+        top: 70px; /* Altura do header */
+        right: -100%; /* Escondido fora da tela */
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: #0a0a0a;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 50px;
+        transition: 0.4s ease;
+        border-top: 1px solid var(--primary-color);
+      }
+
+      ul.menu.active {
+        right: 0; /* Aparece na tela */
+      }
+
+      ul.submenu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        width: 100%;
+        text-align: center;
+        transform: none;
+        display: none; /* Escondido por padrão no mobile */
+      }
+      
+      /* Mostrar submenu no mobile se clicar (opcional) ou deixar aberto */
+      ul.menu li:hover ul.submenu {
+        display: block;
+      }
+
+      .intro {
+        padding: 1.5rem;
+      }
+
+      .intro h2 {
+        font-size: 1.8rem;
+      }
+      
+      .kirby-img {
+        width: 200px;
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">Ana<span>.Tech</span></div>
+      
+      <div class="mobile-btn" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+
+      <ul class="menu" id="nav-menu">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="qmsou.html">Quem sou eu?</a></li>
+        <li>
+          <a href="#">Aulas <i class="fas fa-chevron-down" style="font-size: 0.7em; margin-left: 5px;"></i></a>
+          <ul class="submenu">
+           <li><a href="resumo.html">Resumo do curso</a></li>
+                <li><a href="tabelas.html">Tabelas</a></li>
+                <li><a href="listas.html">Listas</a></li>
+                <li><a href="formularios.html">Formulários</a></li>
+                <li><a href="menus.html">Menus</a></li>
+                <li><a href="petshop.html">PetShop</a></li>
+                <li><a href="cards.html">Cards</a></li>
+                <li><a href="login.html"> Login Saúde</a></li>
+                <li><a href="gametech.html"> Gametech</a></li>
+                <li><a href="tabela-periodica.html"> Tabela Periódica</a></li>
+                <li><a href="fotografo.html">Fotógrafo</a></li>
+                <li><a href="brasiliaresort.html">Brasília Resort</a></li>
+                <li><a href="biografia.html">Biografia César Lattes</a></li>
+                <li><a href="biblioteca.html">Biblioteca</a></li>
+          </ul>
+        </li>
+        <li><a href="contatos.html">Contatos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h2>Portfólio <span>Digital</span></h2>
+      <p>
+        Bem-vindo ao meu universo de desenvolvimento. Este site reúne projetos de <b>Desenvolvimento de Interfaces</b>, 
+        explorando desde conceitos fundamentais até aplicações modernas com HTML5 e CSS3.
+      </p>
+      <p>
+        Explore os projetos através do menu ou confira meu currículo completo abaixo.
+      </p>
+
+      <a href="https://curriculo-ana-julia-alemar.netlify.app/" target="_blank" class="btn-tech" aria-label="Currículo de Ana Júlia Alemar">
+      </i> Ver Currículo
+      </a>
+        
+      <div class="img-container">
+        <img src="kirbyoi.png" alt="Avatar Kirby Tech" class="kirby-img">
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+        <p>&copy; 2025 Ana Júlia Alemar. Desenvolvido com <i class="fas fa-heart" style="color: var(--primary-color)"></i> e código.</p>
+        <div class="social-links">
+            <a href="https://linkedin.com/in/anajuliaalemar" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/anajuliaalemar" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:anajulia.alemar@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+  </footer>
+
+  <script>
+    // Script simples para abrir/fechar o menu no celular
+    function toggleMenu() {
+      const menu = document.getElementById('nav-menu');
+      const icon = document.querySelector('.mobile-btn i');
+      
+      menu.classList.toggle('active');
+      
+      // Troca o ícone de hamburguer para X
+      if (menu.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    }
+  </script>
+
+</body>
+</html>

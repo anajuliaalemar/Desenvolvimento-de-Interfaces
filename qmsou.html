@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quem sou eu? | Ana Júlia Alemar</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ====== ESTILOS ESPECÍFICOS DA PÁGINA PERFIL ====== */
+    
+    /* Container principal que segura Foto + Texto */
+    .profile-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem; /* Espaço entre foto e texto */
+        background: var(--card-bg, rgba(20, 20, 20, 0.7)); /* Usa variável ou fallback */
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--border-color, #333);
+        border-radius: 20px;
+        padding: 3rem;
+        max-width: 1000px;
+        margin: 2rem auto;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    }
+
+    /* Área da Foto e Stats */
+    .profile-visual {
+        text-align: center;
+        flex-shrink: 0; /* Impede a foto de encolher demais */
+    }
+
+    .foto-perfil {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid var(--primary-color, #E72C81);
+        /* Efeito de brilho Neon na foto */
+        box-shadow: 0 0 25px var(--primary-glow, rgba(231, 44, 129, 0.4));
+        transition: transform 0.3s ease;
+    }
+
+    .foto-perfil:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 40px var(--primary-glow, rgba(231, 44, 129, 0.6));
+    }
+
+    /* Lista de detalhes abaixo da foto (Idade, Curso) */
+    .profile-stats {
+        margin-top: 1.5rem;
+        list-style: none;
+        padding: 0;
+        text-align: left;
+        background: rgba(0,0,0,0.3);
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #333;
+    }
+
+    .profile-stats li {
+        margin-bottom: 8px;
+        color: #ccc;
+        font-size: 0.95rem;
+    }
+
+    .profile-stats li i {
+        color: var(--primary-color, #E72C81);
+        width: 25px;
+        text-align: center;
+    }
+
+    /* Área do Texto Sobre Mim */
+    .profile-content {
+        flex: 1; /* Ocupa o resto do espaço */
+    }
+
+    .profile-content h2 {
+        font-size: 2.2rem;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        text-align: left; /* Alinha título à esquerda */
+    }
+
+    .profile-content p {
+        text-align: justify;
+        font-size: 1.05rem;
+        margin-bottom: 1.2rem;
+        color: #ddd;
+    }
+
+    /* Destacar palavras em negrito com a cor rosa */
+    .profile-content strong {
+        color: var(--primary-color, #E72C81);
+        font-weight: 600;
+    }
+
+    /* ====== RESPONSIVIDADE ====== */
+    @media (max-width: 850px) {
+        .profile-container {
+            flex-direction: column; /* Empilha um embaixo do outro */
+            padding: 2rem;
+            gap: 2rem;
+        }
+
+        .foto-perfil {
+            width: 200px;
+            height: 200px;
+        }
+
+        .profile-content h2 {
+            text-align: center;
+        }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">Ana<span>.Tech</span></div>
+      
+      <div class="mobile-btn" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+
+      <ul class="menu" id="nav-menu">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="qmsou.html">Quem sou eu?</a></li>
+        <li>
+          <a href="#">Aulas <i class="fas fa-chevron-down" style="font-size: 0.7em; margin-left: 5px;"></i></a>
+          <ul class="submenu">
+           <li><a href="resumo.html">Resumo do curso</a></li>
+                <li><a href="tabelas.html">Tabelas</a></li>
+                <li><a href="listas.html">Listas</a></li>
+                <li><a href="formularios.html">Formulários</a></li>
+                <li><a href="menus.html">Menus</a></li>
+                <li><a href="petshop.html">PetShop</a></li>
+                <li><a href="cards.html">Cards</a></li>
+                <li><a href="login.html"> Login Saúde</a></li>
+                <li><a href="gametech.html"> Gametech</a></li>
+                <li><a href="tabela-periodica.html"> Tabela Periódica</a></li>
+                <li><a href="fotografo.html">Fotógrafo</a></li>
+                <li><a href="brasiliaresort.html">Brasília Resort</a></li>
+                <li><a href="biografia.html">Biografia César Lattes</a></li>
+                <li><a href="biblioteca.html">Biblioteca</a></li>
+          </ul>
+        </li>
+        <li><a href="contatos.html">Contatos</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <section class="profile-container">
+      
+      <div class="profile-visual">
+        
+        <img src="fotoperfil.jpg" alt="Foto de Ana Júlia Alemar" class="foto-perfil">
+        
+        <ul class="profile-stats">
+           <li><i class="fas fa-birthday-cake"></i> <strong>18 anos</strong></li>
+           <li><i class="fas fa-graduation-cap"></i> ADS - 2º Semestre</li>
+           <li><i class="fas fa-map-marker-alt"></i> Brasília, DF</li>
+        </ul>
+      </div>
+
+      <div class="profile-content">
+        <h2>Sobre Mim</h2>
+        <p>
+          Olá! Meu nome é <strong>Ana Júlia Alemar de Souza</strong>. 
+          Atualmente, estou mergulhada nos estudos de <strong>Desenvolvimento Web</strong>, uma área que me fascina pela capacidade de criar soluções criativas e funcionais para problemas reais.
+        </p>
+        <p>
+          Este portfólio é um reflexo da minha jornada de aprendizado, onde cada projeto representa um novo desafio superado e um passo adiante no meu objetivo de me tornar uma desenvolvedora profissional. Sou uma pessoa <strong>curiosa, dedicada e criativa</strong>, sempre em busca de aprender novas tecnologias e aprimorar minhas habilidades.
+        </p>
+        <p>
+          Meu objetivo é evoluir constantemente como desenvolvedora, explorando novas tecnologias e criando projetos que façam a diferença.
+        </p>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+        <p>&copy; 2025 Ana Júlia Alemar. Desenvolvido com <i class="fas fa-heart" style="color: #E72C81"></i>.</p>
+        <div class="social-links">
+            <a href="https://linkedin.com/in/anajuliaalemar" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/anajuliaalemar" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:anajulia.alemar@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('nav-menu');
+      // Lógica simples se copiar o CSS de mobile da home
+      if (menu.style.display === 'flex') {
+          menu.style.display = 'none';
+      } else {
+          menu.style.display = 'flex';
+          menu.style.flexDirection = 'column';
+          menu.style.position = 'absolute';
+          menu.style.top = '70px';
+          menu.style.right = '0';
+          menu.style.background = '#000';
+          menu.style.width = '100%';
+          menu.style.padding = '20px';
+      }
+    }
+  </script>
+
+</body>
+</html>

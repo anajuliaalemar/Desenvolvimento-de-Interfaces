@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroPet - PetShop</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    /* ====== CORES (ROXO E AMARELO) ====== */
+    :root {
+      --primary-purple: #8e44ad;   /* Roxo Principal */
+      --light-purple: #9b59b6;     /* Roxo Mais Claro */
+      --accent-yellow: #f1c40f;    /* Amarelo Vibrante */
+      --soft-yellow: #fff8db;      /* Amarelo Pastel (Fundo) */
+      --bg-color: #fdfdfd;         /* Fundo Site (Quase branco) */
+      --text-dark: #2c3e50;        /* Cinza Escuro */
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+
+    /* ====== CABEÇALHO ====== */
+    .brand-section {
+      text-align: center;
+      background: var(--primary-purple);
+      padding: 50px 20px;
+      border-bottom: 5px solid var(--accent-yellow);
+    }
+
+    h1.main-title {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 3.5rem;
+      color: var(--white);
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    h1.main-title i { color: var(--accent-yellow); }
+
+    /* ====== MENU (NORMAL - NÃO FIXO) ====== */
+    .page-nav {
+      /* Removido position: sticky para não acompanhar a rolagem */
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .page-nav ul {
+      display: flex;
+      background: var(--white);
+      padding: 10px 30px;
+      border-radius: 50px; 
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      list-style: none;
+      gap: 15px;
+      border: 2px solid var(--accent-yellow);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .page-nav a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 700;
+      font-family: 'Fredoka', sans-serif;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: 0.3s;
+      font-size: 1rem;
+    }
+
+    .page-nav a:hover {
+      background-color: var(--primary-purple);
+      color: var(--white);
+    }
+
+    /* ====== CONTAINER ====== */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 20px;
+    }
+
+    /* ====== INTRODUÇÃO (SEM CARD) ====== */
+    .intro-section {
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 20px;
+      /* Removi background, bordas e sombras */
+    }
+
+    .intro-section h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2.8rem;
+      color: var(--primary-purple);
+      margin-bottom: 20px;
+    }
+
+    .intro-section p {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    mark {
+      background-color: var(--accent-yellow);
+      color: var(--text-dark);
+      padding: 0 8px;
+      border-radius: 4px;
+    }
+
+    /* ====== CARDS DOS ANIMAIS ====== */
+    .pet-card {
+      background-color: var(--white);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 50px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      border: 1px solid #eee;
+      transition: 0.3s;
+    }
+
+    .pet-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary-purple);
+      box-shadow: 0 10px 25px rgba(142, 68, 173, 0.15);
+    }
+
+    .pet-content {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .pet-content h2 {
+      font-family: 'Fredoka', sans-serif;
+      color: var(--primary-purple);
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+    
+    /* Tags (Amarelas) */
+    .pet-tags {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: var(--soft-yellow);
+      color: #d35400; 
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: 1px solid var(--accent-yellow);
+    }
+
+    /* Mídia */
+    .media-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .media-wrapper img, .media-wrapper iframe {
+      flex: 1 1 400px;
+      max-width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 15px;
+      border: 3px solid #eee;
+    }
+
+    /* ====== CONTATOS ====== */
+    #contatos h2 {
+      text-align: center;
+      font-family: 'Fredoka', sans-serif;
+      color: var(--primary-purple);
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    .contact-table {
+      width: 100%;
+      border-collapse: separate; 
+      border-spacing: 0;
+      background-color: var(--white);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      border: 2px solid var(--primary-purple);
+    }
+
+    .contact-table th {
+      background-color: var(--primary-purple);
+      color: var(--white);
+      padding: 20px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.2rem;
+      text-align: left;
+    }
+
+    .contact-table td {
+      padding: 20px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #555;
+      font-weight: 600;
+    }
+
+    .contact-table tr:last-child td { border-bottom: none; }
+    
+    .contact-table tr:hover td {
+      background-color: var(--soft-yellow);
+    }
+
+    .contact-table i { color: var(--primary-purple); margin-right: 10px; font-size: 1.2rem;}
+
+    /* ====== RODAPÉ ====== */
+    footer {
+      background-color: var(--white);
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 50px;
+      border-top: 5px solid var(--primary-purple);
+    }
+    
+    footer p { color: #888; font-weight: 600; }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      h1.main-title { font-size: 2.5rem; }
+      .media-wrapper img, .media-wrapper iframe { height: 200px; }
+      .page-nav ul { padding: 10px; width: 90%; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="brand-section">
+    <h1 class="main-title">AgroPet <i class="fas fa-paw"></i></h1>
+  </div>
+
+  <nav class="page-nav">
+    <ul>
+        <li><a href="#inicio">Início</a></li>
+        <li><a href="#cachorros">Cachorros</a></li>
+        <li><a href="#gatos">Gatos</a></li>
+        <li><a href="#passaros">Pássaros</a></li>
+        <li><a href="#peixes">Peixes</a></li>
+        <li><a href="#contatos">Contatos</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+
+    <section id="inicio" class="intro-section">
+      <h2>Um lugar feliz para o seu pet!</h2>
+      <p>O <b>Pet Shop AgroPet</b> é mais que uma loja; é um cantinho cheio de amor. 
+         Temos <mark>produtos incríveis</mark>, banhos relaxantes e uma equipe que ama o que faz.
+         <br><br>
+         Aqui, seu melhor amigo sai abanando o rabo de felicidade! 🐶🐱
+      </p>
+    </section>
+
+    <section id="cachorros" class="pet-card">
+      <div class="pet-content">
+        <h2><i class="fas fa-dog"></i> Cachorros</h2>
+        <p>O <b>Golden Retriever</b> é puro amor e alegria! Conhecido por ser o melhor amigo da família, ele adora brincar e receber carinho. 
+           Sua pelagem dourada fica ainda mais linda com nosso banho e tosa especial.
+        </p>
+        <div class="pet-tags">
+            <span class="tag">Super Dócil</span>
+            <span class="tag">Ama Crianças</span>
+            <span class="tag">Brincalhão</span>
+        </div>
+      </div>
+      
+      <div class="media-wrapper">
+        <img src="https://i.pinimg.com/736x/d7/d8/03/d7d803c4fe47cf69aefd1de2512e944c.jpg" alt="Golden Retriever">
+        <iframe src="https://www.youtube.com/embed/w7711mJX1Tk?si=ow7V78rX1ligd8QY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section id="gatos" class="pet-card">
+      <div class="pet-content">
+        <h2><i class="fas fa-cat"></i> Gatos</h2>
+        <p>O <b>Gato Persa</b> é a realeza em forma de felino. Com seu pelo fofinho e jeito calmo, ele é a companhia perfeita para um sofá quentinho.
+           Eles precisam de cuidados especiais para manter o pelo sedoso e sem nós.
+        </p>
+        <div class="pet-tags">
+            <span class="tag">Mora em Apê</span>
+            <span class="tag">Peludo</span>
+            <span class="tag">Dorme Muito</span>
+        </div>
+      </div>
+
+      <div class="media-wrapper">
+        <img src="https://i.pinimg.com/736x/6d/f5/7c/6df57c7ea77ed7868ed85294914f356d.jpg" alt="Gato Persa">
+        <iframe src="https://www.youtube.com/embed/6Wpi6ZlLUCY?si=FvJWC6WxogOk22TR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section id="passaros" class="pet-card">
+      <div class="pet-content">
+        <h2><i class="fas fa-dove"></i> Pássaros</h2>
+        <p>O <b>Agapornis</b>, ou "pássaro-do-amor", é uma explosão de cores e alegria. Eles criam laços lindos com seus donos.
+           Nossa loja tem as sementinhas e frutas perfeitas para manter essa energia lá no alto!
+        </p>
+        <div class="pet-tags">
+            <span class="tag">Sociável</span>
+            <span class="tag">Canta Lindo</span>
+            <span class="tag">Colorido</span>
+        </div>
+      </div>
+
+      <div class="media-wrapper">
+        <img src="https://i.pinimg.com/736x/67/82/26/6782261e964af919f50b11c46b6c1262.jpg" alt="Agapornis">
+        <iframe src="https://www.youtube.com/embed/Z2kzl-nQDsM?si=zS_w0tMLNzBu1Xtr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section id="peixes" class="pet-card">
+      <div class="pet-content">
+        <h2><i class="fas fa-fish"></i> Peixes</h2>
+        <p>O <b>Peixe Palhaço</b> (o nosso Nemo!) traz a magia do oceano para sua casa. Colorido e resistente, ele alegra qualquer aquário.
+           Temos tudo para montar o aquário dos sonhos para ele.
+        </p>
+        <div class="pet-tags">
+            <span class="tag">Nemo</span>
+            <span class="tag">Pacífico</span>
+            <span class="tag">Laranja Vivo</span>
+        </div>
+      </div>
+
+      <div class="media-wrapper">
+        <img src="https://i.pinimg.com/736x/5f/81/19/5f8119b8ca22e6677ade3ab72653c7f3.jpg" alt="Peixe Palhaço">
+        <iframe src="https://www.youtube.com/embed/747-eML22qg?si=wa8qmW-LXITkY_MI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section id="contatos">
+      <h2><i class="fas fa-comments"></i> Fale com a Gente!</h2>
+      
+      <table class="contact-table">
+        <thead>
+            <tr>
+                <th>Canal</th>
+                <th>Informação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong><i class="fas fa-map-marker-alt"></i> Onde estamos</strong></td>
+                <td>Sobradinho, 123 – Brasília/DF</td>
+            </tr>
+            <tr>
+                <td><strong><i class="fas fa-phone-alt"></i> Ligue pra nós</strong></td>
+                <td>(61) 98888-8888</td>
+            </tr>
+            <tr>
+                <td><strong><i class="fab fa-whatsapp"></i> WhatsApp</strong></td>
+                <td>(61) 99999-8888</td>
+            </tr>
+            <tr>
+                <td><strong><i class="fas fa-envelope"></i> Mande e-mail</strong></td>
+                <td>agropettt@gmail.com.br</td>
+            </tr>
+            <tr>
+                <td><strong><i class="fas fa-clock"></i> Estamos abertos</strong></td>
+                <td>Seg – Sex: 07h às 22h <br> Sáb: 08h às 12h</td>
+            </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </div> 
+  
+  <footer>
+    <div class="footer-content">
+        <p>Feito com <i class="fas fa-heart" style="color: var(--primary-purple);"></i> AgroPet</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; color: #aaa;">Design por Ana Júlia Alemar</p>
+    </div>
+  </footer>
+
+</body>
+</html>
