@@ -1,103 +1,81 @@
-# Desenvolvimento-de-Interfaces
+# 🖥️ Desenvolvimento de Interfaces
 
-O objetivo deste repositório é mostrar meus projetos criados na matéria de Desenvolvimento de Interfaces do Ceub.
+> **Projetos práticos desenvolvidos durante a graduação em Análise e Desenvolvimento de Sistemas (CEUB).**
 
----
-
-## 🛡️ **Portfólio Pessoal**
-
-[Acesse o Portfólio aqui](https://portifolio-ana-julia-alemar.netlify.app/)
-
-Este site reúne todas as atividades realizadas durante as aulas de Desenvolvimento de Interfaces. O objetivo é aplicar conceitos fundamentais como menus, listas, tabelas, formulários, imagens e vídeos, além de explorar HTML semântico, o uso de IDs, classes e cards.
-
----
-
-## 📝 **Resumo do curso**
-
-Esta página apresenta um resumo interativo da disciplina de Desenvolvimento de Interfaces, integrando uma atividade realizada diretamente na plataforma CodePen para demonstrar conhecimentos teóricos e práticos.
-
----
-
-## 🏆 **Tabela Brasileirão**
-
-A tabela de classificação do Brasileirão, desenvolvida com HTML e CSS. Este exercício foca na estruturação de tabelas, fundamentais para organizar dados complexos de forma comparativa e clara na web.
-
----
-
-## 📋 **Listas**
-
-Nesta atividade, exploramos a criação de listas ordenadas (`<ol>`) e não ordenadas (`<ul>`), além de aplicar estilização criativa utilizando CSS para personalizar marcadores e criar efeitos visuais.
-
----
-
-## 📝 **Formulários**
-
-Nesta atividade, o foco foi a interação com o usuário. Aprendemos a criar campos de entrada de dados (`inputs`), botões e estruturas de validação básica utilizando HTML e estilização via CSS.
-
----
-
-## 🍔 **Exemplos de menus**
-
-Nesta aula, aprendemos duas formas clássicas de criar menus de navegação horizontais: uma utilizando a estrutura de Listas (`ul/li`) e outra utilizando Tabelas, comparando as abordagens.
-
----
-
-## 🐾 **Petshop**
-
-Desenvolvimento de uma landing page para um Petshop fictício. O projeto foca na apresentação de serviços e produtos para animais, utilizando um layout amigável e temático.
-
----
-
-## 🃏 **Cards**
-
-Visualização de componentes no estilo "Card". O projeto explora o alinhamento e a disposição de elementos em blocos, além do uso de `iframes` para carregar conteúdos externos dentro do layout.
-
----
-
-## 🏥 **Login Saúde**
-
-Uma interface de autenticação voltada para um sistema de saúde. Este projeto foca no design de formulários de login, garantindo uma aparência limpa e profissional com HTML e CSS.
-
----
-
-## 🌟 **GameTech**
-
-Uma landing page vibrante para um site de jogos fictício. Este projeto foi criado para testar habilidades em design visual, combinando cores e elementos gráficos para atrair o público gamer.
-
----
-
-## ⚗️ **Tabela Periódica**
-
-Recriação de uma Tabela Periódica completa feita do zero. O desafio foi posicionar cada elemento químico corretamente utilizando CSS (Grid ou Flexbox) para manter a fidelidade à tabela científica.
-
----
-
-## 📷 **Fotógrafo**
-
-Um site de portfólio para um fotógrafo fictício. A página foi desenvolvida para exibir galerias de fotos de forma elegante, destacando o trabalho visual do profissional.
-
----
-
-## 🏖️ **Brasília Resort**
-
-Redesign do site do Brasília Resort. Utilizando o framework **Bootstrap**, criei uma versão modernizada e mais responsiva do que o site original, focando na melhoria da experiência do usuário e na estética.
-
----
-
-## 🔬 **Biografia César Lattes**
-
-Uma página biográfica dedicada ao físico brasileiro César Lattes. O projeto utiliza **Bootstrap** para estruturar textos, citações e imagens de forma responsiva e organizada.
-
----
-
-## 📚 **Biblioteca**
-
-Uma biblioteca virtual funcional. O site foi desenvolvido para facilitar o acesso à leitura, permitindo que o usuário navegue e faça o download de livros em formato PDF através de integrações externas (Baixe Livros).
+Este repositório reúne a evolução do meu aprendizado em Front-End, desde conceitos fundamentais de HTML5 e Semântica até a construção de layouts complexos e responsivos com CSS3 e Bootstrap.
 
 ---
 
 ## 🚀 **Tecnologias Utilizadas**
 
-* HTML5
-* CSS3
-* Bootstrap
+<div align="left">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+  <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white">
+</div>
+
+---
+
+## 🛡️ **Destaque: Portfólio Pessoal**
+
+Este é o projeto integrador que reúne todas as atividades abaixo em um único site navegável.
+
+<div align="center">
+  <a href="https://portifolio-ana-julia-alemar.netlify.app/" target="_blank">
+    <img src="https://img.shields.io/badge/Acesse_o_Portfólio_Online-FF007F?style=for-the-badge&logo=netlify&logoColor=white">
+  </a>
+</div>
+
+---
+
+## 📂 **Coleção de Projetos**
+
+### 🏖️ **Brasília Resort (Bootstrap)**
+Redesign moderno do site do Brasília Resort. Utilizando o framework **Bootstrap**, criei uma versão responsiva, focada na experiência do usuário (UX) e na estética visual, superando o layout original.
+
+### 🌟 **GameTech**
+Uma **Landing Page** vibrante para um site de jogos fictício. O foco aqui foi o design visual, uso de cores contrastantes e disposição de elementos gráficos para atrair o público gamer.
+
+### ⚗️ **Tabela Periódica**
+Um desafio de CSS avançado: recriar a Tabela Periódica do zero. O projeto exigiu o uso preciso de **Grid Layout** e **Flexbox** para posicionar cada elemento químico corretamente.
+
+### 📷 **Fotógrafo**
+Site de portfólio para um fotógrafo fictício. Desenvolvido para exibir galerias de imagens de forma elegante, destacando o trabalho visual com um layout minimalista.
+
+### 🐾 **Petshop**
+Landing page temática para serviços de animais. O projeto foca na apresentação de produtos e serviços de forma amigável, utilizando cores e imagens que remetem ao universo pet.
+
+### 🔬 **Biografia César Lattes**
+Uma página tributo ao físico brasileiro. Utiliza **Bootstrap** para estruturar textos acadêmicos, citações e imagens de forma responsiva e organizada.
+
+### 📚 **Biblioteca Virtual**
+Interface funcional para acesso à leitura. O site permite a navegação e simula o download de livros em PDF através de integrações externas.
+
+---
+
+## 📝 **Exercícios de Fundamentos**
+
+Projetos menores focados em conceitos específicos da linguagem:
+
+* **🏆 Tabela Brasileirão:** Estruturação de dados complexos em tabelas HTML comparativas.
+* **🏥 Login Saúde:** Design de formulários de autenticação limpos e profissionais.
+* **🃏 Cards:** Estudo de componentes, alinhamento em blocos e uso de `iframes`.
+* **🍔 Menus de Navegação:** Comparação entre menus feitos com Listas (`ul/li`) vs Tabelas.
+* **📝 Formulários:** Criação de inputs, validações básicas e botões interativos.
+* **📋 Listas e Resumos:** Estilização criativa de marcadores e integração com **CodePen**.
+
+---
+
+## ⚡ **Como executar os projetos**
+
+Como são projetos estáticos (Front-End puro), você não precisa instalar nada.
+
+1.  **Clone** este repositório.
+2.  Navegue até a pasta do projeto desejado.
+3.  Abra o arquivo `index.html` no seu navegador preferido (Chrome, Edge, Firefox).
+
+---
+
+<p align="center">
+  Desenvolvido com 💜 por <a href="https://github.com/anajuliaalemar">Ana Júlia Alemar</a>
+</p>
